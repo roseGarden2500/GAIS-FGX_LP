@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAIS-FGX - 生成AI安全利用支援ツール（完全ローカル完結型）</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2b6cb0;
+            --accent: #2b6cb0;
+            --cta: #28a745;
+            --vector-btn: #0066cc;
+            --text: #2d3748;
+            --bg: #f7fafc;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .header-logo {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+            display: inline-block;
+        }
+        header h1 {
+            font-size: 2.8rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+        header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+        header .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+        .container {
+            max-width: 900px;
+            margin: -30px auto 40px auto;
+            background: #fff;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            font-size: 1.8rem;
+        }
+        h2:first-of-type {
+            margin-top: 0;
+        }
+        h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+        .feature-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid var(--secondary);
+            padding: 25px;
+            border-radius: 6px;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight-box {
+            background: #edf2f7;
+            border: 1px solid #cbd5e0;
+            border-left: 5px solid var(--primary);
+            padding: 25px;
+            border-radius: 6px;
+            margin: 25px 0;
+        }
+        .highlight-box h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .warning-box {
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-left: 5px solid #e53e3e;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        .warning-box h4 {
+            color: #c53030;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        .disclaimer-box {
+            background: #fffaf0;
+            border: 1px solid #feebc8;
+            border-left: 5px solid #dd6b20;
+            padding: 25px;
+            border-radius: 6px;
+            margin-top: 30px;
+            font-size: 0.95rem;
+        }
+        .disclaimer-box h3 {
+            color: #c05621;
+            margin-top: 0;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #f4f7f6, #e9ecef);
+            border-radius: 8px;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            color: #fff;
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .btn-download {
+            background: var(--cta);
+        }
+        .btn-download:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        .btn-vector {
+            background: var(--vector-btn);
+        }
+        .btn-vector:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+        }
+        .spec-list {
+            list-style: none;
+            padding: 0;
+        }
+        .spec-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .spec-list strong {
+            display: inline-block;
+            width: 160px;
+            color: var(--primary);
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="GAIS-FGX-ICON.png" alt="GAIS-FGX アイコン" class="header-logo">
+        <h1>GAIS-FGX</h1>
+        <div class="subtitle">Generative AI Safety（生成AI安全利用支援ツール）</div>
+        <div class="badge">シェアウェア（無料試用：30回まで） / 完全ローカル完結型</div>
+    </header>
+
+    <div class="container">
+
+        <h2>GAIS-FGXとは？</h2>
+        <p><strong>GAIS-FGX（Generative AI Safety）</strong>は、ChatGPT、Gemini、Claudeなどの生成AIを利用する際、社外秘情報や個人情報などの重要データがプロンプトへ混入・漏洩するリスクを制御・低減するための完全ローカル完結型デスクトップアプリケーションです。日常的な利用から業務での利用まで幅広くお使いいただけます。</p>
+        <p>処理はすべてお使いのPC内で完結するため、入力したテキストや解析データが外部のサーバーへ送信されることは一切ありません。必要なファイルはすべてパッケージに含まれているため、複雑なインストールや初期設定をすることなく、解凍するだけでそのままご利用いただけます。</p>
+
+        <h2>GAIS-FGXが選ばれる特徴</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>1. 3つの手法による高精度リスクワード検出</h3>
+                <p>メールアドレスや住所などの<strong>PII（個人識別情報）</strong>、専用辞書を搭載した<strong>固有名詞</strong>、そして組織特有の<strong>禁止ワード</strong>や<strong>プロンプトインジェクション防御ワード</strong>を自動検出し、「最高」「高」「中」「個別」のリスクレベルに分類して提示します。</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>2. あえて「全自動にしない」個別調整プロセス</h3>
+                <p>機械的な全自動マスキングは行いません。自動判定はあくまで一般論であり、現場の個別文脈では一般ワードすら高リスクになるためです。<strong>抽出されたリスクワードを用い、利用者が最終確認・調整してマスキングする安心設計</strong>です。</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>3. 情報漏洩対策 ＋ プロンプトインジェクション防御</h3>
+                <p>機密情報の流出ブロックだけでなく、プロンプトインジェクション攻撃で悪用されやすいワードやセンテンスも検出し、生成AIを標的としたセキュリティ攻撃への防御力を備えています。</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>4. 組織利用を支える簡易ログ機能（監査対応）</h3>
+                <p>現場の従業員が安全利用のプロセス（チェック・サニタイズ）を適切に踏んでいるかを確認できる簡易ログ機能を搭載。組織としてのガバナンスと運用監査を強力にサポートします。</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>5. 完全ローカル完結＆優れたコストパフォーマンス</h3>
+                <p>すべての解析・サニタイズ処理をPC内で完結。外部通信を行わないため情報漏洩のリスクがありません。月額サブスクリプション不要でご利用いただけます。</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>6. 事前の動作確認（無料お試し30回）</h3>
+                <p>30回まで全機能をお試しいただけるため、ご自身のPC環境や業務フローに適合するか事前に十分ご確認いただけます。</p>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <h3>ワンクリック・安全化（サニタイズ）＆ 復元（デサニタイズ）</h3>
+            <ul>
+                <li><strong>サニタイズ:</strong> 選択したワードを <code>[Person_1]</code> や <code>[Company_1]</code> などの安全なプレースホルダーに一瞬で置換します。</li>
+                <li><strong>デサニタイズ:</strong> 生成AIからの回答（プレースホルダーが含まれる文章）を受け取った後、ワンクリックで元の平文テキストへ安全に復元します。</li>
+            </ul>
+        </div>
+
+        <h2>📦 インストールおよびアンインストール方法</h2>
+        
+        <h3>📥 インストール手順</h3>
+        <p>本ソフトウェアはレジストリ等への自動書き込みを行わないポータブル仕様（または簡単展開仕様）を採用しています。</p>
+        <ol>
+            <li>Vectorなどのダウンロードページ、または提供されたZIPファイルを任意の場所にダウンロードします。</li>
+            <li>ダウンロードした ZIP フォルダを右クリックして「すべて展開」等で解凍します。</li>
+            <li>解凍されたフォルダ内にある <strong><code>GAIS-FGX.exe</code></strong> を実行してご利用ください。（※ショートカットを作成するか、スタートにピン留めしておくと便利です）</li>
+        </ol>
+
+        <h3>🗑️ アンインストール（削除）手順</h3>
+        <p>本ソフトウェアはシステムレジストリや他フォルダへ不要なファイルを残さないため、**完全削除（アンインストール）はフォルダごと削除するだけで完了**します。</p>
+        <ol>
+            <li>実行中の <code>GAIS-FGX.exe</code> を終了させます。</li>
+            <li>配置した <strong><code>GAIS-FGX</code> フォルダ（およびデスクトップ等に作成したショートカット）ごとゴミ箱へ移動して削除</strong>してください。これですべてのデータが完全に削除されます。</li>
+        </ol>
+
+        <h2>⚠️ ご利用の前の重要な注意事項</h2>
+        <div class="warning-box">
+            <h4>⚠️ SmartScreen（警告画面）について</h4>
+            <p style="margin-bottom: 0;">初回起動時などにWindowsのセキュリティ画面（SmartScreen等）が表示される場合がありますが、<strong>「詳細情報」</strong>をクリックし、その後に表示される <strong>「実行」</strong> ボタンを選択することで安全にご利用いただけます（完全ローカル動作のため外部通信はありません）。</p>
+        </div>
+
+        <h2>🚀 使い方・操作手順</h2>
+        
+        <h3>1. 起動方法</h3>
+        <p>ダウンロードした ZIP フォルダを解凍し、中にある <strong><code>GAIS-FGX.exe</code></strong> を実行します。</p>
+
+        <h3>2. 基本的な操作手順</h3>
+        <ol>
+            <li><strong>テキストの入力:</strong> 画面上のテキストエリアに、生成AIに入力したい文章やプロンプトを貼り付けます。</li>
+            <li><strong>リスクワードの解析:</strong> 解析を実行し、抽出されたリスクワードや個人情報、インジェクション対策ワードを確認します。</li>
+            <li><strong>サニタイズ（安全化）:</strong> リスクのあるワードをプレースホルダー（<code>[Person_1]</code> 等）に置換し、安全な状態にしてコピーします。</li>
+            <li><strong>生成AIの利用:</strong> サニタイズされた安全なテキストをChatGPTやGemini等に送信し、回答を得ます。</li>
+            <li><strong>デサニタイズ（復元）:</strong> 生成AIからの回答（プレースホルダーが含まれる文章）をGAIS-FGXに貼り付け、元の固有名詞などにワンクリックで復元します。</li>
+        </ol>
+
+        <h2>動作環境</h2>
+        <ul class="spec-list">
+            <li><strong>対応OS:</strong> Windows 10 / 11 (64bit)</li>
+            <li><strong>ランタイム:</strong> .NET 8.0 以降（同梱または自動解決）</li>
+            <li><strong>事前準備:</strong> 不要（必要なランタイム類はすべて同梱・解凍してすぐ実行可能）</li>
+            <li><strong>インターネット:</strong> 不要（完全ローカル完結）</li>
+        </ul>
+
+        <h2>試用制限とライセンスについて</h2>
+        <p>本ソフトウェアはシェアウェアです。解凍後、<strong>無料試用枠【30回】</strong>まで全機能をお試しいただけます。</p>
+        <p>上限回数に達した後は、ライセンス登録ダイアログより正規ライセンスキーを入力することで、引き続き無制限にご利用いただけます。</p>
+
+        <!-- 免責事項 -->
+        <div class="disclaimer-box">
+            <h3>免責事項・注意事項</h3>
+            <p>1. <strong>検出精度について:</strong> 本ソフトウェアはAIや辞書マッチングによる自動リスク検出を行いますが、すべてのリスクワードや機密情報の完全な検出・保護を100%保証するものではありません。最終的な確認は必ず利用者の責任で行ってください。</p>
+            <p>2. <strong>損害に対する責任の否定:</strong> 本ソフトウェアの使用、または使用不能から生じるいかなる損害（情報漏洩、業務の中断、情報の逸失、金銭的損害、その他の経済的損失等）についても、制作者は一切の責任を負わないものとします。</p>
+            <p>3. <strong>動作保証および個別サポート:</strong> 本ソフトウェアは「現状のまま（As-Is）」で提供されます。すべてのPC環境での動作を保証するものではなく、個別の問い合わせに対する動作保証や個別チューニングの義務を負いません。</p>
+            <p style="margin-bottom: 0;">4. <strong>禁止事項:</strong> 本ソフトウェアの無断転載・再配布・二次配布、およびリバースエンジニアリング（逆コンパイル・逆アセンブル等）を禁じます。</p>
+        </div>
+
+        <div class="cta-section">
+            <h3>今すぐGAIS-FGXを試す / 購入する</h3>
+            <p>まずは無料試用版（30回まで）で、安全でスマートな生成AI活用をご体験ください。</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/roseGarden2500/GAIS/releases/download/v1.0.0/GAIS-FGX_v1.0.0.zip" class="btn btn-download">アプリをダウンロード (.zip)</a>
+                <a href="#" class="btn btn-vector">ライセンスをVectorで購入（準備中）</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; Feature GateX All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
