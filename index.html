@@ -13,6 +13,8 @@
             --vector-btn: #0066cc;
             --text: #2d3748;
             --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
         }
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
@@ -53,7 +55,7 @@
             margin-top: 10px;
         }
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: -30px auto 40px auto;
             background: #fff;
             padding: 50px;
@@ -61,11 +63,28 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             position: relative;
         }
+
+        /* ヒーローセクション（2カラム化） */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        .hero-screenshot {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
         h2 {
             color: var(--primary);
-            border-bottom: 2px solid #e2e8f0;
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 8px;
-            margin-top: 40px;
+            margin-top: 50px;
             font-size: 1.8rem;
         }
         h2:first-of-type {
@@ -81,13 +100,13 @@
         }
         .feature-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-top: 25px;
         }
         .feature-card {
             background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-color);
             border-left: 5px solid var(--secondary);
             padding: 25px;
             border-radius: 6px;
@@ -95,7 +114,7 @@
         .feature-card h3 {
             margin-top: 0;
             color: var(--primary);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
         }
         ul, ol {
@@ -133,6 +152,46 @@
             margin-bottom: 8px;
             font-size: 1.05rem;
         }
+
+        /* 画面ギャラリーセクション */
+        .gallery-section {
+            margin: 5rem 0;
+            text-align: center;
+        }
+        .gallery-section h2 {
+            border-bottom: none;
+            margin-bottom: 0.5rem;
+        }
+        .gallery-sub {
+            color: #718096;
+            margin-bottom: 2.5rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        .gallery-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .gallery-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .gallery-card .caption {
+            padding: 1.2rem;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
         .disclaimer-box {
             background: #fffaf0;
             border: 1px solid #feebc8;
@@ -193,7 +252,7 @@
         }
         .spec-list li {
             padding: 8px 0;
-            border-bottom: 1px dashed #e2e8f0;
+            border-bottom: 1px dashed var(--border-color);
         }
         .spec-list strong {
             display: inline-block;
@@ -205,6 +264,16 @@
             padding: 30px;
             color: #718096;
             font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 20px;
+                margin-top: -20px;
+            }
         }
     </style>
 </head>
@@ -219,9 +288,17 @@
 
     <div class="container">
 
-        <h2>GAIS-FGXとは？</h2>
-        <p><strong>GAIS-FGX（Generative AI Safety）</strong>は、ChatGPT、Gemini、Claudeなどの生成AIを利用する際、社外秘情報や個人情報などの重要データがプロンプトへ混入・漏洩するリスクを制御・低減するための完全ローカル完結型デスクトップアプリケーションです。日常的な利用から業務での利用まで幅広くお使いいただけます。</p>
-        <p>処理はすべてお使いのPC内で完結するため、入力したテキストや解析データが外部のサーバーへ送信されることは一切ありません。必要なファイルはすべてパッケージに含まれているため、複雑なインストールや初期設定をすることなく、解凍するだけでそのままご利用いただけます。</p>
+        <!-- 1. ヒーローセクション -->
+        <section class="hero">
+            <div>
+                <h2>GAIS-FGXとは？</h2>
+                <p><strong>GAIS-FGX（Generative AI Safety）</strong>は、ChatGPT、Gemini、Claudeなどの生成AIを利用する際、社外秘情報や個人情報などの重要データがプロンプトへ混入・漏洩するリスクを制御・低減するための完全ローカル完結型デスクトップアプリケーションです。</p>
+                <p>処理はすべてお使いのPC内で完結するため、入力したテキストや解析データが外部のサーバーへ送信されることは一切ありません。必要なファイルはすべてパッケージに含まれているため、複雑なインストール不要ですぐにご利用いただけます。</p>
+            </div>
+            <div>
+                <img src="GAIS-FGX-Open.png" alt="GAIS-FGX メイン起動画面" class="hero-screenshot">
+            </div>
+        </section>
 
         <h2>GAIS-FGXが選ばれる特徴</h2>
         <div class="feature-grid">
@@ -229,27 +306,22 @@
                 <h3>1. 3つの手法による高精度リスクワード検出</h3>
                 <p>メールアドレスや住所などの<strong>PII（個人識別情報）</strong>、専用辞書を搭載した<strong>固有名詞</strong>、そして組織特有の<strong>禁止ワード</strong>や<strong>プロンプトインジェクション防御ワード</strong>を自動検出し、「最高」「高」「中」「個別」のリスクレベルに分類して提示します。</p>
             </div>
-
             <div class="feature-card">
                 <h3>2. あえて「全自動にしない」個別調整プロセス</h3>
                 <p>機械的な全自動マスキングは行いません。自動判定はあくまで一般論であり、現場の個別文脈では一般ワードすら高リスクになるためです。<strong>抽出されたリスクワードを用い、利用者が最終確認・調整してマスキングする安心設計</strong>です。</p>
             </div>
-
             <div class="feature-card">
                 <h3>3. 情報漏洩対策 ＋ プロンプトインジェクション防御</h3>
                 <p>機密情報の流出ブロックだけでなく、プロンプトインジェクション攻撃で悪用されやすいワードやセンテンスも検出し、生成AIを標的としたセキュリティ攻撃への防御力を備えています。</p>
             </div>
-
             <div class="feature-card">
                 <h3>4. 組織利用を支える簡易ログ機能（監査対応）</h3>
                 <p>現場の従業員が安全利用のプロセス（チェック・サニタイズ）を適切に踏んでいるかを確認できる簡易ログ機能を搭載。組織としてのガバナンスと運用監査を強力にサポートします。</p>
             </div>
-
             <div class="feature-card">
                 <h3>5. 完全ローカル完結＆優れたコストパフォーマンス</h3>
                 <p>すべての解析・サニタイズ処理をPC内で完結。外部通信を行わないため情報漏洩のリスクがありません。月額サブスクリプション不要でご利用いただけます。</p>
             </div>
-
             <div class="feature-card">
                 <h3>6. 事前の動作確認（無料お試し30回）</h3>
                 <p>30回まで全機能をお試しいただけるため、ご自身のPC環境や業務フローに適合するか事前に十分ご確認いただけます。</p>
@@ -264,15 +336,45 @@
             </ul>
         </div>
 
+        <!-- 2. アプリ操作画面ギャラリー -->
+        <section class="gallery-section">
+            <h2>実際の操作フロー</h2>
+            <p class="gallery-sub">テキスト入力からリスク検出、サニタイズ、そして回答の復元までのスムーズな流れ</p>
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <img src="GAIS-FGX-InputText.png" alt="テキスト入力画面">
+                    <div class="caption">1. オリジナルテキストの入力</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="GAIS-FGX-DetectRisk.png" alt="リスクワード選択画面">
+                    <div class="caption">2. リスクワードの自動検出と選択</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="GAIS-FGX-SanitizeWords.png" alt="サニタイズ完了画面">
+                    <div class="caption">3. 安全化（サニタイズ）されたテキスト</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="GAIS-FGX-DeSanitizeWords.png" alt="デサニタイズ復元画面">
+                    <div class="caption">4. AI出力を貼り付けて安全に復元</div>
+                </div>
+            </div>
+        </section>
+
         <h2>📦 インストールおよびアンインストール方法</h2>
         
         <h3>📥 インストール手順</h3>
-        <p>本ソフトウェアはレジストリ等への自動書き込みを行わないポータブル仕様（または簡単展開仕様）を採用しています。</p>
+        <p>本ソフトウェアはレジストリ等への自動書き込みを行わないポータブル仕様を採用しています。</p>
         <ol>
-            <li>Vectorなどのダウンロードページ、または提供されたZIPファイルを任意の場所にダウンロードします。</li>
+            <li>Vectorなどのダウンロードページ、または提供されたZIPファイルをダウンロードします。</li>
             <li>ダウンロードした ZIP フォルダを右クリックして「すべて展開」等で解凍します。</li>
-            <li>解凍されたフォルダ内にある <strong><code>GAIS-FGX.exe</code></strong> を実行してご利用ください。（※ショートカットを作成するか、スタートにピン留めしておくと便利です）</li>
+            <li>解凍されたフォルダ内にあるビルダーや <strong><code>GAIS-FGX.exe</code></strong> を実行してご利用ください。</li>
         </ol>
+
+        <!-- パスに日本語が含まれる場合の注意書き -->
+        <div class="warning-box">
+            <h4>⚠️ 配置先ディレクトリパスに関する重要なご注意</h4>
+            <p style="margin-bottom: 0;">ZIPファイルを解凍して配置する先の<strong>フォルダパス（ディレクトリのパス）に日本語（全角文字）が含まれている場合、ランタイムや内部処理が正しく動作しない</strong>不具合が発生します。必ず半角英数字のみで構成されたパス（例: <code>C:\Apps\GAIS-FGX</code> など）に配置してご使用ください。</p>
+        </div>
 
         <h3>🗑️ アンインストール（削除）手順</h3>
         <p>本ソフトウェアはシステムレジストリや他フォルダへ不要なファイルを残さないため、**完全削除（アンインストール）はフォルダごと削除するだけで完了**します。</p>
@@ -286,20 +388,6 @@
             <h4>⚠️ SmartScreen（警告画面）について</h4>
             <p style="margin-bottom: 0;">初回起動時などにWindowsのセキュリティ画面（SmartScreen等）が表示される場合がありますが、<strong>「詳細情報」</strong>をクリックし、その後に表示される <strong>「実行」</strong> ボタンを選択することで安全にご利用いただけます（完全ローカル動作のため外部通信はありません）。</p>
         </div>
-
-        <h2>🚀 使い方・操作手順</h2>
-        
-        <h3>1. 起動方法</h3>
-        <p>ダウンロードした ZIP フォルダを解凍し、中にある <strong><code>GAIS-FGX.exe</code></strong> を実行します。</p>
-
-        <h3>2. 基本的な操作手順</h3>
-        <ol>
-            <li><strong>テキストの入力:</strong> 画面上のテキストエリアに、生成AIに入力したい文章やプロンプトを貼り付けます。</li>
-            <li><strong>リスクワードの解析:</strong> 解析を実行し、抽出されたリスクワードや個人情報、インジェクション対策ワードを確認します。</li>
-            <li><strong>サニタイズ（安全化）:</strong> リスクのあるワードをプレースホルダー（<code>[Person_1]</code> 等）に置換し、安全な状態にしてコピーします。</li>
-            <li><strong>生成AIの利用:</strong> サニタイズされた安全なテキストをChatGPTやGemini等に送信し、回答を得ます。</li>
-            <li><strong>デサニタイズ（復元）:</strong> 生成AIからの回答（プレースホルダーが含まれる文章）をGAIS-FGXに貼り付け、元の固有名詞などにワンクリックで復元します。</li>
-        </ol>
 
         <h2>動作環境</h2>
         <ul class="spec-list">
@@ -334,7 +422,7 @@
     </div>
 
     <footer>
-        <p>&copy; Feature GateX All rights reserved.</p>
+        <p>&copy; 2026 Feature GateX. All rights reserved.</p>
     </footer>
 
 </body>
