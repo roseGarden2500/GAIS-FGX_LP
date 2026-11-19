@@ -11,6 +11,7 @@
             --secondary: #2b6cb0;
             --accent: #2b6cb0;
             --cta: #28a745;
+            --cta-sub: #1e7e34;
             --vector-btn: #0066cc;
             --text: #2d3748;
             --bg: #f7fafc;
@@ -218,15 +219,15 @@
         .cta-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
             margin-top: 20px;
         }
         .btn {
             display: inline-block;
             color: #fff;
-            padding: 16px 30px;
-            font-size: 1.1rem;
+            padding: 15px 24px;
+            font-size: 1.05rem;
             text-decoration: none;
             border-radius: 6px;
             font-weight: bold;
@@ -240,12 +241,31 @@
             background: #218838;
             transform: translateY(-2px);
         }
+        .btn-download-sub {
+            background: var(--cta-sub);
+        }
+        .btn-download-sub:hover {
+            background: #155724;
+            transform: translateY(-2px);
+        }
         .btn-vector {
             background: var(--vector-btn);
         }
         .btn-vector:hover {
             background: #0052a3;
             transform: translateY(-2px);
+        }
+        .download-note {
+            max-width: 780px;
+            margin: 20px auto 0 auto;
+            padding: 14px 18px;
+            background: #fff;
+            border: 1px solid #cbd5e0;
+            border-left: 4px solid var(--secondary);
+            border-radius: 6px;
+            text-align: left;
+            font-size: 0.92rem;
+            color: var(--text);
         }
         .spec-list {
             list-style: none;
@@ -284,7 +304,7 @@
         <img src="GAIS-FGX-ICON.png" alt="GAIS-FGX アイコン" class="header-logo">
         <h1>GAIS-FGX</h1>
         <div class="subtitle">Generative AI Safety（生成AI安全利用支援ツール）</div>
-        <div class="badge">シェアウェア（無料試用：30回まで） / 完全ローカル完結型</div>
+        <div class="badge">シェアウェア（無料試用：30回まで / 価格：2,980円 税込） / ローカル完結型</div>
     </header>
 
     <div class="container">
@@ -293,8 +313,8 @@
         <section class="hero">
             <div>
                 <h2>GAIS-FGXとは？</h2>
-                <p><strong>GAIS-FGX（Generative AI Safety）</strong>は、ChatGPT、Gemini、Claudeなどの生成AIを利用する際、社外秘情報や個人情報などの重要データがプロンプトへ混入・漏洩するリスクを制御・低減するための完全ローカル完結型デスクトップアプリケーションです。</p>
-                <p>処理はすべてお使いのPC内で完結するため、入力したテキストや解析データが外部のサーバーへ送信されることは一切ありません。必要なファイルはすべてパッケージに含まれているため、複雑なインストール不要ですぐにご利用いただけます。</p>
+                <p><strong>GAIS-FGX（Generative AI Safety）</strong>は、ChatGPT、Gemini、Claudeなどの生成AIを利用する際、社外秘情報や個人情報などの重要データがプロンプトへ混入・漏洩するリスクを制御・低減するためのローカル完結型デスクトップアプリケーションです。</p>
+                <p>テキスト解析・サニタイズ・デサニタイズなどの処理はすべてお使いのPC内で完結するため、入力したテキストや解析データが外部のサーバーへ送信されることは一切ありません。インストーラー形式を採用しており、必要な設定やフォルダのアクセス権も自動で適切に構成されます。</p>
             </div>
             <div>
                 <img src="GAIS-FGX-Open.png" alt="GAIS-FGX メイン起動画面" class="hero-screenshot">
@@ -320,8 +340,8 @@
                 <p>現場の従業員が安全利用のプロセス（チェック・サニタイズ）を適切に踏んでいるかを確認できる簡易ログ機能を搭載。組織としてのガバナンスと運用監査を強力にサポートします。</p>
             </div>
             <div class="feature-card">
-                <h3>5. 完全ローカル完結＆優れたコストパフォーマンス</h3>
-                <p>すべての解析・サニタイズ処理をPC内で完結。外部通信を行わないため情報漏洩のリスクがありません。月額サブスクリプション不要でご利用いただけます。</p>
+                <h3>5. ローカル完結＆買い切りライセンス</h3>
+                <p>解析・サニタイズ処理はPC内で完結し、外部送信は行いません。月額サブスクリプション不要の買い切りライセンス（2,980円・税込）でご利用いただけます。</p>
             </div>
             <div class="feature-card">
                 <h3>6. 事前の動作確認（無料お試し30回）</h3>
@@ -364,42 +384,45 @@
         <h2>📦 インストールおよびアンインストール方法</h2>
         
         <h3>📥 インストール手順</h3>
-        <p>本ソフトウェアはレジストリ等への自動書き込みを行わないポータブル仕様を採用しています。</p>
+        <p>本ソフトウェアはインストーラー形式（<code>GAIS-FGX-setup.exe</code>）と分割アーカイブ（<code>GAIS-FGX-data.7z.001</code>）の2ファイル構成を採用しています。</p>
         <ol>
-            <li>Vectorなどのダウンロードページ、または提供されたZIPファイルをダウンロードします。</li>
-            <li>ダウンロードした ZIP フォルダを右クリックして「すべて展開」等で解凍します。</li>
-            <li>解凍されたフォルダ内にあるビルダーや <strong><code>GAIS-FGX.exe</code></strong> を実行してご利用ください。</li>
+            <li>下記の <strong><code>GAIS-FGX-SETUP.zip</code></strong> と <strong><code>GAIS-FGX-data.7z.001</code></strong> の<strong>両方</strong>を、必ず<strong>同じフォルダ</strong>にダウンロードします。</li>
+            <li><code>GAIS-FGX-SETUP.zip</code> を解凍し、中から <code>GAIS-FGX-setup.exe</code>（および <code>ReadMe.md</code>）を取り出します。</li>
+            <li><code>GAIS-FGX-data.7z.001</code> と同じフォルダに配置した <strong><code>GAIS-FGX-setup.exe</code></strong> をダブルクリックして起動し、画面の指示に従ってインストールします。</li>
+            <li>インストール完了後、デスクトップに作成されたショートカット <strong><code>GAIS-FGX</code></strong> から起動できます。</li>
         </ol>
 
-        <!-- パスに日本語が含まれる場合の注意書き -->
         <div class="warning-box">
-            <h4>⚠️ 配置先ディレクトリパスに関する重要なご注意</h4>
-            <p style="margin-bottom: 0;">ZIPファイルを解凍して配置する先の<strong>フォルダパス（ディレクトリのパス）に日本語（全角文字）が含まれている場合、ランタイムや内部処理が正しく動作しない</strong>不具合が発生します。必ず半角英数字のみで構成されたパス（例: <code>C:\Apps\GAIS-FGX</code> など）に配置してご使用ください。</p>
+            <h4>⚠️ ファイル配置・Cドライブ空き容量・処理時間に関するご注意</h4>
+            <ul style="margin-bottom: 0;">
+                <li><code>GAIS-FGX-setup.exe</code> と <code>GAIS-FGX-data.7z.001</code> は、<strong>必ず同じフォルダに配置してから</strong>実行してください。別々のフォルダにあるとアーカイブを展開できずエラーになります。</li>
+                <li>インストール先をCドライブ以外（Dドライブ等）に指定した場合でも、解凍処理の一時作業領域として <strong>Cドライブ（<code>%LOCALAPPDATA%\Temp</code>）</strong> を使用するため、Cドライブにも十分な空き容量を確保してください。</li>
+                <li>アーカイブサイズが大きいため、解凍・インストール完了までに数分程度かかることがあります。</li>
+            </ul>
         </div>
 
         <h3>🗑️ アンインストール（削除）手順</h3>
-        <p>本ソフトウェアはシステムレジストリや他フォルダへ不要なファイルを残さないため、**完全削除（アンインストール）はフォルダごと削除するだけで完了**します。</p>
         <ol>
-            <li>実行中の <code>GAIS-FGX.exe</code> を終了させます。</li>
-            <li>配置した <strong><code>GAIS-FGX</code> フォルダ（およびデスクトップ等に作成したショートカット）ごとゴミ箱へ移動して削除</strong>してください。これですべてのデータが完全に削除されます。</li>
+            <li>実行中の <code>GAIS-FGX</code> を終了させます。</li>
+            <li>Windowsの「設定（アプリ ＞ インストールされているアプリ）」またはコントロールパネルの「プログラムと機能」を開きます。</li>
+            <li>一覧から <strong><code>GAIS-FGX</code></strong> を選択し、<strong>「アンインストール」</strong> を実行します。プログラム本体、デスクトップショートカット、および関連するレジストリ情報が削除されます。</li>
         </ol>
 
         <h2>⚠️ ご利用の前の重要な注意事項</h2>
         <div class="warning-box">
             <h4>⚠️ SmartScreen（警告画面）について</h4>
-            <p style="margin-bottom: 0;">初回起動時などにWindowsのセキュリティ画面（SmartScreen等）が表示される場合がありますが、<strong>「詳細情報」</strong>をクリックし、その後に表示される <strong>「実行」</strong> ボタンを選択することで安全にご利用いただけます（完全ローカル動作のため外部通信はありません）。</p>
+            <p style="margin-bottom: 0;">初回起動時などにWindowsのセキュリティ画面（SmartScreen等）が表示される場合がありますが、<strong>「詳細情報」</strong>をクリックし、その後に表示される <strong>「実行」</strong> ボタンを選択することで安全にご利用いただけます（テキスト解析・サニタイズ等の処理はPC内で完結し、外部送信はありません）。</p>
         </div>
 
         <h2>動作環境</h2>
         <ul class="spec-list">
-            <li><strong>対応OS:</strong> Windows 10 / 11 (64bit)</li>
-            <li><strong>ランタイム:</strong> .NET 8.0 以降（同梱または自動解決）</li>
-            <li><strong>事前準備:</strong> 不要（必要なランタイム類はすべて同梱・解凍してすぐ実行可能）</li>
-            <li><strong>インターネット:</strong> 不要（完全ローカル完結）</li>
+            <li><strong>対応OS:</strong> Windows 10 / Windows 11 (64bit)</li>
+            <li><strong>ランタイム:</strong> 不要（.NET 10 ランタイム同梱・自己完結型）</li>
+            <li><strong>インターネット:</strong> ライセンス認証時のみ必要（テキスト解析・サニタイズ等の処理はローカル完結）</li>
         </ul>
 
         <h2>試用制限とライセンスについて</h2>
-        <p>本ソフトウェアはシェアウェアです。解凍後、<strong>無料試用枠【30回】</strong>まで全機能をお試しいただけます。</p>
+        <p>本ソフトウェアはシェアウェア（<strong>2,980円・税込</strong>）です。インストール後、<strong>無料試用枠【30回】</strong>まで全機能をお試しいただけます。</p>
         <p>上限回数に達した後は、ライセンス登録ダイアログより正規ライセンスキーを入力することで、引き続き無制限にご利用いただけます。</p>
 
         <!-- 免責事項 -->
@@ -412,11 +435,16 @@
         </div>
 
         <div class="cta-section">
-            <h3>今すぐGAIS-FGXを試す / 購入する</h3>
+            <h3>今すぐGAIS-FGX (v1.0.1) を試す / 購入する</h3>
             <p>まずは無料試用版（30回まで）で、安全でスマートな生成AI活用をご体験ください。</p>
             <div class="cta-buttons">
-                <a href="https://github.com/roseGarden2500/GAIS-FGX_LP/releases/download/v1.0.0/GAIS-FGX_v1.0.0.zip" class="btn btn-download">アプリをダウンロード (.zip)</a>
-                <a href="#" class="btn btn-vector">ライセンスをVectorで購入（準備中）</a>
+                <a href="https://github.com/roseGarden2500/GAIS-FGX_LP/releases/download/v1.0.1/GAIS-FGX-SETUP.zip" class="btn btn-download">① セットアップ＆ReadMe (.zip)</a>
+                <a href="https://github.com/roseGarden2500/GAIS-FGX_LP/releases/download/v1.0.1/GAIS-FGX-data.7z.001" class="btn btn-download-sub">② データアーカイブ (.7z.001)</a>
+                <a href="#" class="btn btn-vector">ライセンスをVectorで購入（2,980円・税込）</a>
+            </div>
+            <div class="download-note">
+                <strong>※ ダウンロード時のご注意：</strong>
+                <strong>①</strong> と <strong>②</strong> の<strong>両方</strong>を必ず<strong>同じフォルダ</strong>にダウンロードしてください。ダウンロード後、<code>GAIS-FGX-SETUP.zip</code> を解凍して中の <code>GAIS-FGX-setup.exe</code> を実行すると、同じフォルダにある <code>GAIS-FGX-data.7z.001</code> を自動展開してインストールします（Cドライブにも解凍用の一時空き容量を確保してください）。
             </div>
         </div>
 
